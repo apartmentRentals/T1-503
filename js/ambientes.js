@@ -37,8 +37,8 @@ export const nodosTour = [
     panorama: "imagenes/sala-cocina.jpg",
     thumbnail: "imagenes/miniaturas/sala-cocina.jpg",
     links: [
-      { nodeId: "habitacion1", position: { yaw: "-172.7deg", pitch: "-21.6deg" }, linkOffset: { depth: 1.55 } },
-      { nodeId: "habitacion2", position: { yaw: "-170.2deg", pitch: "-29deg" }, linkOffset: { depth: 3.5 } },
+      { nodeId: "habitacion1", position: { yaw: "-177.7deg", pitch: "-21.6deg" }, linkOffset: { depth: 1.55 }, arrowStyle: { className: "va-flecha va-flecha-izq" } },
+      { nodeId: "habitacion2", position: { yaw: "-178.1deg", pitch: "-29.4deg" }, linkOffset: { depth: 3.5 }, arrowStyle: { className: "va-flecha va-flecha-izq" } },
       { nodeId: "habitacion-principal", position: { yaw: "184.5deg", pitch: "-15.6deg" }, linkOffset: { depth: 8.5 } },
     ],
   },

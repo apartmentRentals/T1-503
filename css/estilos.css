@@ -339,6 +339,10 @@ body.va-tour {
   color: rgba(255, 255, 255, 0.95);
 }
 
+.va-tour-visor .va-flecha-izq svg {
+  transform: rotate(-90deg);
+}
+
 .va-calibrar {
   position: fixed;
   right: 12px;
