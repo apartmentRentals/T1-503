@@ -3,6 +3,7 @@ import { GalleryPlugin } from "@photo-sphere-viewer/gallery-plugin";
 import { GyroscopePlugin } from "@photo-sphere-viewer/gyroscope-plugin";
 import { VirtualTourPlugin } from "@photo-sphere-viewer/virtual-tour-plugin";
 import { nodosTour, textosVisor } from "./ambientes.js";
+import { activarGiroscopioMovil, configGiroscopio } from "./giroscopio.js";
 
 const params = new URLSearchParams(window.location.search);
 const nombreAmbiente = document.getElementById("nombre-ambiente");
@@ -86,7 +87,7 @@ const visor = new Viewer({
   navbar: ["zoom", "move", "caption", "gallery", "gyroscope", "fullscreen"],
   lang: textosVisor,
   plugins: [
-    GyroscopePlugin,
+    GyroscopePlugin.withConfig(configGiroscopio),
     GalleryPlugin.withConfig({
       visibleOnLoad: false,
       hideOnClick: true,
@@ -126,4 +127,5 @@ visor.addEventListener("ready", () => {
   if (depurar) {
     activarCalibracion(visor, tour);
   }
+  activarGiroscopioMovil(visor);
 });
