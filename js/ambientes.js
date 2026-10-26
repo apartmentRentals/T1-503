@@ -1,0 +1,90 @@
+export const ambientes = [
+  {
+    id: "sala-cocina",
+    titulo: "Sala y cocina",
+    descripcion: "Al entrar, la sala queda al frente y la cocina a la derecha. El pasillo de las habitaciones sigue a la derecha.",
+    imagen: "imagenes/sala-cocina.jpg",
+    miniatura: "imagenes/miniaturas/sala-cocina.jpg",
+  },
+  {
+    id: "habitacion1",
+    titulo: "Habitación 1",
+    descripcion: "Primera habitación pequeña del pasillo, a la izquierda.",
+    imagen: "imagenes/habitacion1.jpg",
+    miniatura: "imagenes/miniaturas/habitacion1.jpg",
+  },
+  {
+    id: "habitacion2",
+    titulo: "Habitación 2",
+    descripcion: "Segunda habitación pequeña del pasillo, a la izquierda.",
+    imagen: "imagenes/habitacion2.jpg",
+    miniatura: "imagenes/miniaturas/habitacion2.jpg",
+  },
+  {
+    id: "habitacion-principal",
+    titulo: "Habitación principal",
+    descripcion: "Habitación del fondo del pasillo.",
+    imagen: "imagenes/habitacion-principal.jpg",
+    miniatura: "imagenes/miniaturas/habitacion-principal.jpg",
+  },
+];
+
+export const nodosTour = [
+  {
+    id: "sala-cocina",
+    name: "Sala y cocina",
+    caption: "Sala y cocina",
+    panorama: "imagenes/sala-cocina.jpg",
+    thumbnail: "imagenes/miniaturas/sala-cocina.jpg",
+    links: [
+      { nodeId: "habitacion1", position: { yaw: "75deg", pitch: "-8deg" } },
+      { nodeId: "habitacion2", position: { yaw: "100deg", pitch: "-8deg" } },
+      { nodeId: "habitacion-principal", position: { yaw: "125deg", pitch: "-8deg" } },
+    ],
+  },
+  {
+    id: "habitacion1",
+    name: "Habitación 1",
+    caption: "Habitación 1",
+    panorama: "imagenes/habitacion1.jpg",
+    thumbnail: "imagenes/miniaturas/habitacion1.jpg",
+    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+  },
+  {
+    id: "habitacion2",
+    name: "Habitación 2",
+    caption: "Habitación 2",
+    panorama: "imagenes/habitacion2.jpg",
+    thumbnail: "imagenes/miniaturas/habitacion2.jpg",
+    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+  },
+  {
+    id: "habitacion-principal",
+    name: "Habitación principal",
+    caption: "Habitación principal",
+    panorama: "imagenes/habitacion-principal.jpg",
+    thumbnail: "imagenes/miniaturas/habitacion-principal.jpg",
+    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+  },
+];
+
+export const textosVisor = {
+  zoom: "Zoom",
+  zoomOut: "Alejar",
+  zoomIn: "Acercar",
+  moveUp: "Arriba",
+  moveDown: "Abajo",
+  moveLeft: "Izquierda",
+  moveRight: "Derecha",
+  description: "Descripción",
+  fullscreen: "Pantalla completa",
+  loading: "Cargando…",
+  menu: "Menú",
+  close: "Cerrar",
+  twoFingers: "Usa dos dedos para moverte",
+  ctrlZoom: "Usa Ctrl y la rueda para hacer zoom",
+  loadError: "No se pudo cargar la imagen 360",
+  webglError: "Tu navegador no soporta WebGL",
+  gyroscope: "Giroscopio",
+  gallery: "Ambientes",
+};
