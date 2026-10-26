@@ -24,6 +24,9 @@ const visor = new Viewer({
       dataMode: "client",
       positionMode: "manual",
       renderMode: "3d",
+      arrowsPosition: {
+        linkOverlapAngle: 0.04,
+      },
       startNodeId: existe ? inicio : "sala-cocina",
       preload: true,
       transitionOptions: {
