@@ -334,6 +334,63 @@ body.va-tour {
   background: transparent !important;
 }
 
+.va-tour-visor .psv-virtual-tour-arrows {
+  transform: translateY(14%) !important;
+}
+
+.va-calibrar {
+  position: fixed;
+  right: 12px;
+  bottom: 64px;
+  z-index: 50;
+  width: min(320px, calc(100vw - 24px));
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(28, 25, 23, 0.92);
+  color: #f6f1e8;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.va-calibrar p {
+  margin: 0 0 0.35rem;
+}
+
+.va-calibrar-titulo {
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.va-calibrar code {
+  display: block;
+  margin: 0.15rem 0 0;
+  padding: 0.35rem 0.45rem;
+  border-radius: 6px;
+  background: #2a2623;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.va-calibrar button {
+  margin: 0.55rem 0 0.35rem;
+  min-height: 40px;
+  padding: 0.4rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f6f1e8;
+  color: #1c1917;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.va-calibrar-ayuda {
+  color: #d6cdc3;
+  font-size: 0.78rem;
+}
+
 @media (min-width: 640px) {
   .va-tour-ayuda {
     display: inline;

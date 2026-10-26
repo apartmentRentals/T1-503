@@ -4,9 +4,78 @@ import { GyroscopePlugin } from "@photo-sphere-viewer/gyroscope-plugin";
 import { VirtualTourPlugin } from "@photo-sphere-viewer/virtual-tour-plugin";
 import { nodosTour, textosVisor } from "./ambientes.js";
 
+const params = new URLSearchParams(window.location.search);
 const nombreAmbiente = document.getElementById("nombre-ambiente");
-const inicio = new URLSearchParams(window.location.search).get("inicio") || "sala-cocina";
+const inicio = params.get("inicio") || "sala-cocina";
+const depurar = params.has("debug");
 const existe = nodosTour.some((nodo) => nodo.id === inicio);
+
+function aGrados(radianes) {
+  let grados = (radianes * 180) / Math.PI;
+  grados = ((((grados + 180) % 360) + 360) % 360) - 180;
+  return Math.round(grados * 10) / 10;
+}
+
+function snippetPosicion(yaw, pitch) {
+  return `{ yaw: "${yaw}deg", pitch: "${pitch}deg" }`;
+}
+
+function activarCalibracion(visor, tour) {
+  window.visor = visor;
+  window.tour = tour;
+
+  const panel = document.createElement("aside");
+  panel.className = "va-calibrar";
+  panel.innerHTML = `
+    <p class="va-calibrar-titulo">Calibrar flechas</p>
+    <p>Nodo: <strong data-nodo>—</strong></p>
+    <p>Clic: <code data-clic>haz clic en la puerta</code></p>
+    <p>Vista: <code data-vista>—</code></p>
+    <button type="button" data-copiar>Copiar posición</button>
+    <p class="va-calibrar-ayuda">Pega yaw y pitch en js/ambientes.js. depth acerca o aleja la flecha 3D. En consola: visor.getPosition()</p>
+  `;
+  document.body.appendChild(panel);
+
+  const nodoEl = panel.querySelector("[data-nodo]");
+  const clicEl = panel.querySelector("[data-clic]");
+  const vistaEl = panel.querySelector("[data-vista]");
+  const copiar = panel.querySelector("[data-copiar]");
+  let ultima = null;
+
+  function pintarNodo() {
+    const nodo = tour.getCurrentNode();
+    nodoEl.textContent = nodo ? nodo.id : "—";
+  }
+
+  function pintarVista() {
+    const { yaw, pitch } = visor.getPosition();
+    vistaEl.textContent = snippetPosicion(aGrados(yaw), aGrados(pitch));
+  }
+
+  visor.addEventListener("position-updated", pintarVista);
+  visor.addEventListener("click", ({ data }) => {
+    if (!data) return;
+    const yaw = aGrados(data.yaw);
+    const pitch = aGrados(data.pitch);
+    ultima = { yaw, pitch };
+    const snippet = snippetPosicion(yaw, pitch);
+    clicEl.textContent = snippet;
+    console.log(`[calibrar] ${nodoEl.textContent} ${snippet}`);
+  });
+  tour.addEventListener("node-changed", pintarNodo);
+
+  copiar.addEventListener("click", async () => {
+    if (!ultima) return;
+    await navigator.clipboard.writeText(snippetPosicion(ultima.yaw, ultima.pitch));
+    copiar.textContent = "Copiado";
+    setTimeout(() => {
+      copiar.textContent = "Copiar posición";
+    }, 1200);
+  });
+
+  pintarNodo();
+  pintarVista();
+}
 
 const visor = new Viewer({
   container: "tour",
@@ -25,6 +94,7 @@ const visor = new Viewer({
       positionMode: "manual",
       renderMode: "3d",
       arrowsPosition: {
+        minPitch: 0.12,
         linkOverlapAngle: 0.04,
       },
       startNodeId: existe ? inicio : "sala-cocina",
@@ -50,5 +120,8 @@ visor.addEventListener("ready", () => {
   const actual = tour.getCurrentNode();
   if (actual) {
     nombreAmbiente.textContent = actual.name;
+  }
+  if (depurar) {
+    activarCalibracion(visor, tour);
   }
 });
