@@ -48,7 +48,7 @@ export const nodosTour = [
     caption: "Habitación 1",
     panorama: "imagenes/habitacion1.jpg",
     thumbnail: "imagenes/miniaturas/habitacion1.jpg",
-    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+    links: [{ nodeId: "sala-cocina", position: { yaw: "143.4deg", pitch: "-33.4deg" } }],
   },
   {
     id: "habitacion2",
@@ -56,7 +56,7 @@ export const nodosTour = [
     caption: "Habitación 2",
     panorama: "imagenes/habitacion2.jpg",
     thumbnail: "imagenes/miniaturas/habitacion2.jpg",
-    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+    links: [{ nodeId: "sala-cocina", position: { yaw: "145.4deg", pitch: "-32.6deg" } }],
   },
   {
     id: "habitacion-principal",
@@ -64,7 +64,7 @@ export const nodosTour = [
     caption: "Habitación principal",
     panorama: "imagenes/habitacion-principal.jpg",
     thumbnail: "imagenes/miniaturas/habitacion-principal.jpg",
-    links: [{ nodeId: "sala-cocina", position: { yaw: "-90deg", pitch: "-8deg" } }],
+    links: [{ nodeId: "sala-cocina", position: { yaw: "122.4deg", pitch: "-32.1deg" } }],
   },
 ];
 
