@@ -25,6 +25,7 @@ function activarCalibracion(visor, tour) {
   window.visor = visor;
   window.tour = tour;
 
+  /* Descomentar para ver el panel de calibración */
   const panel = document.createElement("aside");
   panel.className = "va-calibrar";
   panel.innerHTML = `
@@ -35,7 +36,7 @@ function activarCalibracion(visor, tour) {
     <button type="button" data-copiar>Copiar posición</button>
     <p class="va-calibrar-ayuda">Pega yaw y pitch en js/ambientes.js. El tamaño se cambia en TAMANO_FLECHA (js/tour.js). En consola: visor.getPosition()</p>
   `;
-  document.body.appendChild(panel);
+  //document.body.appendChild(panel);
 
   const nodoEl = panel.querySelector("[data-nodo]");
   const clicEl = panel.querySelector("[data-clic]");
