@@ -329,13 +329,14 @@ body.va-tour {
   background: #111;
 }
 
-.va-tour-visor .psv-virtual-tour-arrows,
-.va-tour-visor .psv-virtual-tour-arrows > * {
-  background: transparent !important;
+.va-tour-visor .psv-virtual-tour-arrows {
+  background: transparent;
+  transform: none;
 }
 
-.va-tour-visor .psv-virtual-tour-arrows {
-  transform: translateY(14%) !important;
+.va-tour-visor .va-flecha,
+.va-tour-visor .psv-virtual-tour-arrow {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .va-calibrar {

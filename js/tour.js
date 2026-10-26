@@ -9,6 +9,7 @@ const nombreAmbiente = document.getElementById("nombre-ambiente");
 const inicio = params.get("inicio") || "sala-cocina";
 const depurar = params.has("debug");
 const existe = nodosTour.some((nodo) => nodo.id === inicio);
+const TAMANO_FLECHA = { width: 18, height: 18 };
 
 function aGrados(radianes) {
   let grados = (radianes * 180) / Math.PI;
@@ -32,7 +33,7 @@ function activarCalibracion(visor, tour) {
     <p>Clic: <code data-clic>haz clic en la puerta</code></p>
     <p>Vista: <code data-vista>—</code></p>
     <button type="button" data-copiar>Copiar posición</button>
-    <p class="va-calibrar-ayuda">Pega yaw y pitch en js/ambientes.js. depth acerca o aleja la flecha 3D. En consola: visor.getPosition()</p>
+    <p class="va-calibrar-ayuda">Pega yaw y pitch en js/ambientes.js. El tamaño se cambia en TAMANO_FLECHA (js/tour.js). En consola: visor.getPosition()</p>
   `;
   document.body.appendChild(panel);
 
@@ -92,10 +93,10 @@ const visor = new Viewer({
     VirtualTourPlugin.withConfig({
       dataMode: "client",
       positionMode: "manual",
-      renderMode: "3d",
-      arrowsPosition: {
-        minPitch: 0.12,
-        linkOverlapAngle: 0.04,
+      renderMode: "2d",
+      arrowStyle: {
+        size: TAMANO_FLECHA,
+        className: "va-flecha",
       },
       startNodeId: existe ? inicio : "sala-cocina",
       preload: true,
